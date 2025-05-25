@@ -4,7 +4,7 @@ int main(int argc, char const *argv[])
 {
     int x[5] = {10,20,30,40,50};
 
-    printf("Valor do elemento na posição 0 = %d\n",*(x+0));//mesma expressão acima podendo usar *
+    printf("Valor do elemento na posição 0 = %d\n",*(x+0));//mesma expressão acima podendo usar x[0]
     printf("Endereço de memória do elemento na posição 0 = %p\n\n",x+0);//exibe endereço de memória do elemento na posição 0 podendo usar &x[0]
     
     printf("MUDANDO O VALOR DO ELEMENTO NA POSIÇÃO 0 DE 10 PARA 55\n\n");
