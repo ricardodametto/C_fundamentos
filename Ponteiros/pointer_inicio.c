@@ -13,6 +13,6 @@ int main(int argc, char const *argv[])
     printf("Valor ponteiro inicializado pela variavel h: %d\n",*ph);
 
     *ph = 200;
-    printf("Endereço variavel regular: %d\n",h);
+    printf("Endereço variavel regular apos valor modificado via ponteiro: %d\n",h);
     return 0;
 }
