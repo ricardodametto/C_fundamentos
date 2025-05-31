@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 
     ph = &h; //inicializa o ponteiro
     printf("Endereço ponteiro inicializado: %p\n",ph);
-    printf("Valor ponteiro inicializado pela variavel h: %d\n",*ph);
+    printf("Exibindo o contéudo de *ph após inicialização: %d\n",*ph);
 
     *ph = 200;
     printf("Endereço variavel regular apos valor modificado via ponteiro: %d\n",h);
