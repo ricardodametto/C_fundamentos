@@ -35,7 +35,7 @@ void insere_inicio(Lista *lista,Cadastro campos){
 }
 
 void insere_final(Lista *lista,Cadastro campos){
-    Cadastro *percorreNo, *novo = (Cadastro*)malloc(sizeof(Cadastro));
+    Cadastro *percorreNo = lista->inicio, *novo = (Cadastro*)malloc(sizeof(Cadastro));
     //inicializa os campos da struct
     novo->estado = campos.estado;
     strcpy(novo->codcarta, campos.codcarta);
@@ -67,6 +67,16 @@ void imprimir_lista(Lista *lista){ //para imprimir a lista deve-se percorre-la a
     }
 }
 
+void libera_lista(Lista *lista) {
+    Cadastro *atual = lista->inicio;
+    while (atual != NULL) {
+        Cadastro *temp = atual;
+        atual = atual->proximo;
+        free(temp);
+    }
+    lista->inicio = NULL;
+    lista->tamanho = 0;
+}
 
 
 int main(int argc, char const *argv[])
@@ -79,7 +89,7 @@ int main(int argc, char const *argv[])
     
     do
     {
-        printf("1 - Inserir no Início\n2 - Inserir no Fim\n3 - Imprimir\n5 - Sair\n");
+        printf("1 - Inserir no Início\n2 - Inserir no Fim\n3 - Imprimir\n4 - Liberar Memória\n5 Sair\n");
         scanf("%d", &opcao);
         switch (opcao)
 
@@ -123,8 +133,13 @@ int main(int argc, char const *argv[])
         
         case 3:
             imprimir_lista(&lista);     
-        break;
+            printf("Memória liberada!\n");
+            break;
         
+        case 4:
+            libera_lista(&lista);
+        break;    
+
         case 5:
              printf("Finalizando...\n");
         break;     

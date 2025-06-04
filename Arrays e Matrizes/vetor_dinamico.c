@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
     if(vet){
            printf("Memoria Alocada com sucesso!\n\n");
         for(i=0; i < tam; i++)
-            *(vet + i) = rand() % 100; //numero sorteado terá resto da sua divisão = 100, ou seja será de 0 99
+           *(vet+i) = rand() % 100; //numero sorteado terá resto da sua divisão = 100, ou seja será de 0 99
         
         for(i = 0; i < tam; i++)
             printf(" %d", *(vet +i));
