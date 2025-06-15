@@ -41,6 +41,7 @@ int main(int argc, char const *argv[])
     }
     entradausuario(vetor,5);//nao é necessario clocar o &vetor porque todo vetor já é um ponteiro implicito para o seu primeiro elemento
     imprimeVetor(vetor,5);
+    
     free(vetor);
     
     return 0;
