@@ -8,7 +8,7 @@ typedef struct{ //struct principal que conterá os campos para leitura de toda i
     char cidade[50];
     float area;
     int populacao;
-    long long int pib;
+    float pib;
     int pontostur;
 
 }Cartas;
@@ -38,31 +38,47 @@ void inserirInicio(No **head_ref, Cartas c){
 }
 
 //função preencheCampos
-Cartas preencherCampos(){
+Cartas* preencherCampos(){
 
-    Cartas c;
+    Cartas *c =(Cartas*)malloc(sizeof(Cartas));
+    if(c != NULL){
+        printf("Memoria alocada com sucesso!!\n\n");
+    }
 
     printf("\nCadastro de Cartas jogo Super Trunfo\n");
 
     printf("Digite o ESTADO(Letra de A a H): ");
-    scanf(" %c",&c.estado);
+    scanf(" %c",&c->estado);
     while (getchar() != '\n');
     printf("Digite o código da carta(A01 até H09): ");
-    scanf(" %4s[^\n]",c.codigo);
+    scanf(" %4s[^\n]",c->codigo);
     while (getchar() != '\n');
     printf("Digite o nome da cidade: ");
-    scanf(" %49[^\n]",c.cidade);
+    scanf(" %49[^\n]",c->cidade);
     printf("Digite a area total da cidade: ");
-    scanf("%f",&c.area);
+    scanf("%f",&c->area);
     printf("Digite o total populacional: ");
-    scanf("%d",&c.populacao);
+    scanf("%d",&c->populacao);
     printf("Digite o PIB anual da cidade: ");
-    scanf("%lld",&c.pib);
+    scanf("%f",&c->pib);
     printf("Digite a quantidade de pontos turísticos: ");
-    scanf("%d",&c.pontostur);
+    scanf("%d",&c->pontostur);
     
     return c;
 }
+
+void liberarLista(No **head_ref) {
+    No *atual = *head_ref;
+    No *prox;
+
+    while(atual != NULL) {
+        prox = atual->next;
+        free(atual);
+        atual = prox;
+    }
+    *head_ref = NULL;
+}
+
 
 //função imprime lista
 void imprimeLista(No *no){
@@ -74,23 +90,11 @@ void imprimeLista(No *no){
          printf("Código da carta: %4s\n",no->dados.codigo);
          printf("Nome da cidade: %s\n",no->dados.cidade);
          printf("Área total em km2: %f km2\n",no->dados.area);
-         printf("PIB anual: R$ %lld bilhões\n",no->dados.pib);
+         printf("PIB anual: R$ %.2f bilhões\n",no->dados.pib);
          printf("total de pontos turísticos: %d\n",no->dados.pontostur);
      
         no = no->next;
     }
-}
-
-void liberarLista(No **head_ref){
-    No *atual = *head_ref;
-    No *prox;
-
-    while(atual != NULL){
-        prox = atual->next;
-        free(atual);
-        atual = prox;
-    }
-    *head_ref =  NULL;
 }
 
 
@@ -109,23 +113,31 @@ int main(int argc, char const *argv[])
 
         {
         case 1:
-           Cartas nova = preencherCampos(); 
-           inserirInicio(&lista, nova);
+           Cartas *nova = preencherCampos(); 
+           inserirInicio(&lista, *nova);
            printf("\nCadastro realizado com sucesso!!\n");
-           
+           free(nova);
            break;
         
         case 2:
              imprimeLista(lista);
+             if(lista == NULL){
+                printf("Lista está vazia, não existe nenhum nó!!\n");
+             }
+             printf("\n\n");
              break;
         case 3:
             printf("Finalizando...\n");     
+            liberarLista(&lista);//libera memoria da lista encadeada
             break;
         
         default:
             printf("Opção Inválida...\n");    
             break;
         } 
-    }while(opcao != 5);
+    }while(opcao != 3);
+    
+    
     return 0;
+    
 }
