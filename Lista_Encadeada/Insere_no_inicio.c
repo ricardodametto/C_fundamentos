@@ -116,7 +116,7 @@ int main(int argc, char const *argv[])
            Cartas *nova = preencherCampos(); 
            inserirInicio(&lista, *nova);
            printf("\nCadastro realizado com sucesso!!\n");
-           free(nova);
+           free(nova);//ipontantissimo!!! a cada malloc colocar o free!!
            break;
         
         case 2:
