@@ -2,11 +2,15 @@
 
 int main(int argc, char const *argv[])
 {
-    int i = 5;
+    int i = 2;
 
     do
     {
-        printf(" %d",i);
+        
+            printf(" %d\n",i);
+    
+           
+        
         i++;           //SE O VALOR DA VARIAVEL FOR MENOR DO QUE VALOR DENTRO DA CONDIÇÃO ENTÃO USE ++ INCREMENTO
     } while (i <= 10);//CONDIÇÃO INICIAL É OBRIGATÓRIAMENTE TRUE NO WHILE!!!
     
