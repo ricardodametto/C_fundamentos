@@ -20,7 +20,7 @@ typedef struct No{  //struct de infra estrutura do Nó(cada carta inserida no si
 
 //função para criar o primeiro ou novo novo Nó (ou nova carta)
 No* criarNo(Cartas c){
-    No *novoNo = (No*)malloc(sizeof(No));//aloca memoria dinamicamente para o novoNo
+    No *novoNo = (No*)calloc(1,sizeof(No));//aloca memoria dinamicamente para o novoNo
     if(novoNo == NULL){
         printf("Erro ao alocar memoria");
         exit(1);
@@ -40,7 +40,7 @@ void inserirInicio(No **head_ref, Cartas c){
 //função preencheCampos
 Cartas* preencherCampos(){
 
-    Cartas *c =(Cartas*)malloc(sizeof(Cartas));
+    Cartas *c =(Cartas*)calloc(1,sizeof(Cartas));
     if(c != NULL){
         printf("Memoria alocada com sucesso!!\n\n");
     }
